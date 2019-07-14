@@ -1,5 +1,6 @@
 package com.example.inventorymanagement.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.inventorymanagement.R;
+import com.example.inventorymanagement.Service.ConnectionBackgroundService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this); // TODO need refraction
+
+
     }
 
     @Override
@@ -83,6 +88,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_add_inventory) {
             // Handle the camera action
+            Intent startServiceIntent = new Intent(this, ConnectionBackgroundService.class);
+            startService(startServiceIntent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
